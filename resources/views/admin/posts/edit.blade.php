@@ -12,7 +12,15 @@
           <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="post">
             @csrf
             @method('PATCH')
-
+            <div class="form-group">
+              <label for="category">Categories</label>
+              <select class="form-control @error('title') is-invalid @enderror" id="category_id" name="category" value="{{ old('category') }}">
+                <option value="">Select</option>
+                @foreach ($categories as $category)
+                  <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+              </select>
+            </div>
             <div class="form-group">
               <label for="title">Title</label>
               <input class="form-control @error('title') is-invalid @enderror" id="title" type="text" name="title" value="{{ old('title', $post->title) }}">

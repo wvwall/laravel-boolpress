@@ -68,9 +68,9 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ route('admin.posts.index') }}">Home</a>
+                        <a href="{{ route('admin.posts.index') }}">Posts</a>
                     @else
-                         <a href="{{ route('posts.index') }}">Posts</a>
+                        <a href="{{ route('posts.index') }}">Posts</a>
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome
+                    Welcome to Boolpress
                 </div>
 
                 
