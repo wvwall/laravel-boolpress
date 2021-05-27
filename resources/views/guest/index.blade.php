@@ -70,6 +70,7 @@
                     @auth
                         <a href="{{ route('admin.posts.index') }}">Home</a>
                     @else
+                         <a href="{{ route('posts.index') }}">Posts</a>
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
@@ -81,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Home per guest
+                    Welcome
                 </div>
 
                 
