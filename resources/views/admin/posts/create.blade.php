@@ -14,7 +14,7 @@
             @method('POST')
             <div class="form-group">
               <label for="category">Categories</label>
-              <select class="form-control @error('title') is-invalid @enderror" id="category_id" name="category" value="{{ old('category') }}">
+              <select class="form-control @error('title') is-invalid @enderror" id="category" name="category_id" value="{{ old('category') }}">
                 <option value="">Select</option>
                 @foreach ($categories as $category)
                   <option value="{{$category->id}}">{{$category->name}}</option>

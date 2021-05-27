@@ -42,7 +42,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_id'=> 'exist:categories,id|nullable',
+            'category_id'=> 'exists:categories,id|nullable',
             'title'=> 'required|string|max:255',
             'content'=>'required|string'
         ]);
@@ -87,7 +87,7 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post, Category $category)
+    public function edit(Post $post)
     {
         $categories = Category::all();
         return view('admin.posts.edit',compact('post','categories'));
@@ -103,7 +103,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'category_id' => 'exist:categories,id|nullable',
+            'category_id' => 'exists:categories,id|nullable',
             'title'=>'required|string|max:255',
             'content'=>'required|string',
             
@@ -112,10 +112,10 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        $post = new Post();
-        $post->fill($data);
+        /* $post = new Post(); */
+        /* $post->fill($data); */
 
-        $slug = Str::slug($post->title. '-' );
+        /* $slug = Str::slug($post->title. '-' );
         $slug_base = $slug;
         $contatore = 1;
         $post_slug = Post::where('slug', '=', $slug)->first();
@@ -125,8 +125,8 @@ class PostController extends Controller
 
             $post_slug = Post::where('slug', '=', $slug)->first();
         }
-        $post->slug=$slug;
-        $post->save();
+        $post->slug=$slug; */
+        $post->update($data);
 
         return redirect()->route('admin.posts.index');
     }
