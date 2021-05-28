@@ -17,7 +17,7 @@
               <select class="form-control @error('title') is-invalid @enderror" id="category" name="category_id" value="{{ old('category') }}">
                 <option value="">Select</option>
                 @foreach ($categories as $category)
-                  <option value="{{$category->id}}">{{$category->name}}</option>
+                  <option value="{{$category->id}}" {{ $category->id == old('category_id', $post->category_id) ? 'selected' : ''}}>{{$category->name}}</option>
                 @endforeach
               </select>
             </div>

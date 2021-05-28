@@ -17,12 +17,12 @@
                   {{$post->content}}
 
                   <div class="">
-                  <a href="{{route('admin.posts.show', ['post' => $post->id])}}">Show</a>
-                    <a href="{{route('admin.posts.edit', ['post' => $post->id])}}">Edit</a>
+                  <a class="btn btn-primary" href="{{route('admin.posts.show', ['post' => $post->id])}}">Show</a>
+                    <a class="btn btn-secondary" href="{{route('admin.posts.edit', ['post' => $post->id])}}">Edit</a>
                     <form action="{{route('admin.posts.destroy',['post'=>$post->id])}}" method="post">
                         @csrf 
                         @method('DELETE')
-                        <input class="delete" onclick="return confirm('SEI SICURO COMPA?')" type="submit" value="DELETE">
+                        <input class="delete btn btn-danger" onclick="return confirm('SEI SICURO COMPA?')" type="submit" value="DELETE">
                     </form>
                   </div>
                 </div>
