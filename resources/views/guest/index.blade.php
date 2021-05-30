@@ -84,7 +84,44 @@
                 <div class="title m-b-md">
                     Welcome to Boolpress
                 </div>
+                <form action="" action="{{route('contact')}}" method="Post">
+                    @csrf 
+                    @method('POST')
 
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" name="name" value="{{ old('name') }}">
+                        @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control @error('email') is-invalid @enderror" id="email" type="text" name="email" value="{{ old('email') }}">
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subjct</label>
+                        <input class="form-control @error('name') is-invalid @enderror" id="subject" type="text" name="subject" value="{{ old('subject') }}">
+                        @error('subject')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Message</label>
+                        <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"> {{ old('content') }}</textarea>
+                        @error('content')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Invia</button>
+                </form>
                 
             </div>
         </div>
