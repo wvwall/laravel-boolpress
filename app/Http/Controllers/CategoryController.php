@@ -10,6 +10,6 @@ class CategoryController extends Controller
 
         $category = Category::with('posts')->where('slug', '=', $slug)->first();
 
-        return view('guest.posts.index')->with('posts', $category->posts);
+        return view('guest.posts.index')->with('posts', $category->posts );
     }
 }

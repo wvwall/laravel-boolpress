@@ -7,6 +7,9 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+Use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -44,10 +47,13 @@ class PostController extends Controller
         $request->validate([
             'category_id'=> 'exists:categories,id|nullable',
             'title'=> 'required|string|max:255',
-            'content'=>'required|string'
+            'content'=>'required|string',
+            'cover'=>'image|max:500|nullable'
         ]);
 
         $data = $request->all();
+        /* $cover = NULL;
+        $cover = Storage::put('uplouds', $data['cover']); */
 
         $post = new Post();
         $post->fill($data);
@@ -62,9 +68,12 @@ class PostController extends Controller
 
             $post_slug = Post::where('slug', '=', $slug)->first();
         }
-        $post->slug=$slug;
+        $post->slug = $slug;
+        /* $post->cover = $cover; */
         $post->save();
 
+        Mail::to('mail@mail.it')->send(new SendNewMail());
+        
         return redirect()->route('admin.posts.index');
         
        
