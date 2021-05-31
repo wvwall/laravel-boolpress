@@ -69,7 +69,7 @@ class PostController extends Controller
             $post_slug = Post::where('slug', '=', $slug)->first();
         }
         $post->slug = $slug;
-        $post->cover = $cover;
+        $post->cover = 'storage/' . $cover;
         $post->save();
 
         Mail::to('mail@mail.it')->send(new SendNewMail());

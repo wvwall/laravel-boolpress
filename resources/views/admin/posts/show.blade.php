@@ -12,7 +12,7 @@
 
                 <div class="card-body">
                   {{$post->content}}
-
+                    <img src="{{asset($post->cover)}}" alt="">
                   <div class="">
                     <a class="btn btn-secondary" href="{{route('admin.posts.edit', ['post' => $post->id])}}">Edit</a>
                     <form action="{{route('admin.posts.destroy',['post'=>$post->id])}}" method="post">
