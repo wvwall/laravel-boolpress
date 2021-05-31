@@ -46,7 +46,7 @@ class TagController extends Controller
           $data = $request->all();
           $tag = new Tag();
 
-          $slug = Str::slug($tag->name. '-' );
+         /*  $slug = Str::slug($tag->name. '-' );
           $slug_base = $slug;
           $contatore = 1;
           $tag_slug = Tag::where('slug', '=', $slug)->first();
@@ -56,8 +56,14 @@ class TagController extends Controller
   
               $tag_slug = Tag::where('slug', '=', $slug)->first();
           }
-          $tag->slug = $slug;
-          $tag->save();
+          $tag->slug = $slug; */
+          $data = $request->all();
+          $data['slug'] = $this->generateSlug($data['name']);
+          $tag = new Tag();
+          
+    
+          $tag->create($data);
+          
           
           
     
@@ -109,7 +115,21 @@ class TagController extends Controller
         //
     }
 
-    
+    private function generateSlug(string $name, bool $change = true, string $old_slug = '') {
+        if (!$change) {
+          return $old_slug;
+  }
+        $slug = Str::slug($name,'-');
+        $slug_base = $slug;
+        $contatore = 1;
+        $post_with_slug = Tag::where('slug','=',$slug)->first();
+        while($post_with_slug) {
+          $slug = $slug_base . '-' . $contatore;
+          $contatore++;
+          $post_with_slug = Tag::where('slug','=',$slug)->first();
+  }
+        return $slug;
+  }
    
 }
 
