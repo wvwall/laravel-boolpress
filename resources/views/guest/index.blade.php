@@ -72,6 +72,7 @@
                         <a href="{{ route('admin.posts.index') }}">Posts</a>
                     @else
                         <a href="{{ route('posts.index') }}">Posts</a>
+                        <a href="{{ route('admin.tags.index') }}">Tags</a>
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
