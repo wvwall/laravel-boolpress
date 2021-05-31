@@ -84,7 +84,7 @@
                 <div class="title m-b-md">
                     Welcome to Boolpress
                 </div>
-                <form action="" action="{{route('contact')}}" method="Post">
+                <form action="{{route('contact')}}" method="Post">
                     @csrf 
                     @method('POST')
 
